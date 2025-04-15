@@ -1,0 +1,87 @@
+body {
+    background-color: #F6EEE3;
+    font-family: 'Kristen ITC', 'Comic Sans MS', cursive;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-image: repeating-linear-gradient(
+        to bottom,
+        #F6EEE3,
+        #F6EEE3 29px,
+        #e0d7ca 30px
+    );
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.centered {
+    text-align: center;
+    margin-top: 20vh;
+}
+
+.centered a {
+    display: block;
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #333;
+    text-decoration: none;
+}
+
+.toc {
+    list-style-type: none;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0;
+    font-size: 1.1em;
+}
+
+.toc li {
+    margin: 10px 0;
+}
+
+.about {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 50px;
+}
+
+.about .text {
+    flex: 1;
+    padding: 20px;
+}
+
+.about .image img {
+    max-width: 300px;
+    border-radius: 10px;
+}
+
+.contact-form {
+    width: 90%;
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-form input,
+.contact-form textarea {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.contact-form button {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
