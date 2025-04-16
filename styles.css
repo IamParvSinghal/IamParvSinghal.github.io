@@ -6,15 +6,15 @@
 }
 
 body {
-    background-color: #F6EEE3;
+    background-color: #fffbf5;
     font-family: 'Spring Rainstorm', cursive;
     margin: 0;
     padding: 0;
     line-height: 1.6;
     background-image: repeating-linear-gradient(
         to bottom,
-        #F6EEE3,
-        #F6EEE3 29px,
+        #fffbf5,
+        #fffbf5 29px,
         #e0d7ca 30px
     );
 }
@@ -59,13 +59,13 @@ h1 {
 .toc li a {
     text-decoration: none;
     color: #333;
-    background-color: #F6EEE3;
+    background-color: #fffbf5;
     padding-right: 15px;
     z-index: 1;
 }
 
 .toc li span {
-    background-color: #F6EEE3;
+    background-color: #fffbf5;
     padding-left: 15px;
     z-index: 1;
 }
