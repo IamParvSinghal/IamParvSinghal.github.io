@@ -131,7 +131,6 @@ h1 {
     left: 30px;
     text-decoration: none;
     color: #333;
-    font-family: 'Spring Rainstorm', cursive;
     font-size: 1.5em;
     background-color: #fffff4;
     padding: 10px 20px;
@@ -143,4 +142,23 @@ h1 {
 .back-button:hover {
     background-color: #333;
     color: #fffff4;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.centered h1 {
+    animation: fadeIn 1.5s ease-out;
+}
+
+.centered a {
+    animation: fadeIn 1.5s ease-out 0.5s backwards;
 }
