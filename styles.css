@@ -176,21 +176,11 @@ h1 {
 
 .centered h1 {
     animation: fadeIn 1.5s ease-out;
-    cursor: inherit;
 }
 
 .centered a {
     animation: fadeIn 1.5s ease-out 0.5s backwards;
     cursor: inherit;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
 }
 
 .centered a:hover {
@@ -201,4 +191,13 @@ h1 {
 /* Keep bold effect for all other links */
 a:not(.centered a):hover {
     font-weight: bold;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
 }
