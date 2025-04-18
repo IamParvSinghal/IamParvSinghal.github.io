@@ -26,9 +26,14 @@ body {
     min-height: 100vh;
 }
 
-/* Make all links use the pencil cursor */
-a, a:hover {
+/* Make all links use the pencil cursor and add hover effect */
+a {
     cursor: inherit;
+}
+
+a:hover {
+    cursor: inherit;
+    font-weight: bold;
 }
 
 h1 {
@@ -177,4 +182,23 @@ h1 {
 .centered a {
     animation: fadeIn 1.5s ease-out 0.5s backwards;
     cursor: inherit;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.centered a:hover {
+    animation: bounce 1s ease-in-out infinite;
+    font-weight: normal;
+}
+
+/* Keep bold effect for all other links */
+a:not(.centered a):hover {
+    font-weight: bold;
 }
