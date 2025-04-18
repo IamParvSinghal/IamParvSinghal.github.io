@@ -5,6 +5,11 @@
     font-style: normal;
 }
 
+html {
+    cursor: url('pencil_cursor.png'), auto;
+    height: 100%;
+}
+
 body {
     background-color: #fffff4;
     font-family: 'Spring Rainstorm', cursive;
@@ -17,6 +22,13 @@ body {
         #fffff4 29px,
         #e0d7ca 30px
     );
+    cursor: inherit;
+    min-height: 100vh;
+}
+
+/* Make all links use the pencil cursor */
+a, a:hover {
+    cursor: inherit;
 }
 
 h1 {
@@ -28,7 +40,8 @@ h1 {
 
 .centered {
     text-align: center;
-    margin-top: 30vh;
+    margin-top: 20vh;
+    cursor: inherit;
 }
 
 .centered a {
@@ -37,6 +50,7 @@ h1 {
     font-size: 3em;
     color: #333;
     text-decoration: none;
+    cursor: inherit;
 }
 
 .toc {
@@ -157,8 +171,10 @@ h1 {
 
 .centered h1 {
     animation: fadeIn 1.5s ease-out;
+    cursor: inherit;
 }
 
 .centered a {
     animation: fadeIn 1.5s ease-out 0.5s backwards;
+    cursor: inherit;
 }
