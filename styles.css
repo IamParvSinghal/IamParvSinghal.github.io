@@ -39,6 +39,7 @@ a:hover {
 h1 {
     text-align: center;
     margin-top: 50px;
+    margin-bottom: 5px;
     font-size: 6em;
     font-family: 'Spring Rainstorm', cursive;
 }
@@ -101,10 +102,16 @@ h1 {
 }
 
 .about {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 50px;
+    max-width: 1000px;
+    margin: 5px auto;
+    padding: 0 10px;
+}
+
+.about p {
+    margin: 15px 0;
+    line-height: 1.8;
+    font-size: 1.4em;
+    text-align: justify;
 }
 
 .about .text {
@@ -120,9 +127,14 @@ h1 {
 .contact-form {
     width: 90%;
     max-width: 600px;
-    margin: 20px auto;
+    margin: -20px auto 20px auto;
     display: flex;
     flex-direction: column;
+}
+
+.contact-form label {
+    font-size: 2em;
+    margin-top: 15px;
 }
 
 .contact-form input,
@@ -183,21 +195,30 @@ h1 {
     cursor: inherit;
 }
 
-.centered a:hover {
-    animation: bounce 1s ease-in-out infinite;
-    font-weight: normal;
-}
-
-/* Keep bold effect for all other links */
-a:not(.centered a):hover {
+/* All links become bold on hover */
+a:hover {
     font-weight: bold;
 }
 
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+.social-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 5px 0;
+}
+
+.social-button {
+    padding: 10px 30px;
+    font-size: 1.2em;
+    text-decoration: none;
+    color: #333;
+    border: 2px solid #333;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background-color: #fffff4;
+}
+
+.social-button:hover {
+    background-color: #333;
+    color: #fffff4;
 }
