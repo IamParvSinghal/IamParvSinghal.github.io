@@ -5,9 +5,219 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .projects-container {
+            position: relative;
+            width: 800px;
+            height: 800px;
+            margin: 30px auto;
+        }
+
+        .project-paper {
+            position: absolute;
+            cursor: pointer;
+            transform-origin: center;
+            transition: all 0.5s ease-in-out;
+            background: none;
+        }
+
+        .project-paper.crumpled {
+            transform: scale(0.8);
+            width: 200px;
+            height: 200px;
+            padding: 0;
+            background: none;
+        }
+
+        .project-paper.crumpled::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('crumpledpaper.png') center center/contain no-repeat;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .project-content {
+            opacity: 0;
+            transition: all 0.5s;
+            height: 0;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            width: 600px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        .project-paper.expanded {
+            position: absolute;
+            top: 400px !important;
+            left: 50% !important;
+            transform: translate(-50%, 0) !important;
+            z-index: 1000;
+            width: auto;
+            height: auto;
+            padding: 0;
+            transition: all 0.5s ease-in-out;
+            background: none;
+        }
+
+        .project-paper.expanded::before {
+            display: none;
+        }
+
+        .project-paper.expanded .project-content {
+            opacity: 1;
+            height: auto;
+            background: #fff;
+            padding: 40px;
+            line-height: 32px;
+            border-radius: 20px;
+            box-shadow: 
+                0 4px 6px rgba(0, 0, 0, 0.1),
+                0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+            background: white;
+            padding: 8px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-description {
+            color: #34495e;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-link {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-link:hover {
+            background: #2980b9;
+        }
+
+        .projects-container.has-expanded .project-paper:not(.expanded) {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
     <a href="table-of-content.html" class="back-button">Back</a>
     <h1>PROJECTS</h1>
+    
+    <div class="projects-container">
+        <!-- Project 1 -->
+        <div class="project-paper crumpled" style="top: 50%; left: 15%; transform: translate(-50%, -50%) rotate(0deg)">
+            <div class="project-content">
+                <h3 class="project-title">Project 1</h3>
+                <p class="project-description">Description of your first project goes here...</p>
+                <a href="#" class="project-link">Github</a>
+            </div>
+        </div>
+
+        <!-- Project 2 -->
+        <div class="project-paper crumpled" style="top: 15%; left: 30%; transform: translate(-50%, -50%) rotate(60deg)">
+            <div class="project-content">
+                <h3 class="project-title">Project 2</h3>
+                <p class="project-description">Description of your second project goes here...</p>
+                <a href="#" class="project-link">Github</a>
+            </div>
+        </div>
+
+        <!-- Project 3 -->
+        <div class="project-paper crumpled" style="top: 15%; right: 30%; transform: translate(50%, -50%) rotate(120deg)">
+            <div class="project-content">
+                <h3 class="project-title">Project 3</h3>
+                <p class="project-description">Description of your third project goes here...</p>
+                <a href="#" class="project-link">Github</a>
+            </div>
+        </div>
+
+        <!-- Project 4 -->
+        <div class="project-paper crumpled" style="top: 50%; right: 15%; transform: translate(50%, -50%) rotate(180deg)">
+            <div class="project-content">
+                <h3 class="project-title">Project 4</h3>
+                <p class="project-description">Description of your fourth project goes here...</p>
+                <a href="#" class="project-link">Github</a>
+            </div>
+        </div>
+
+        <!-- Project 5 -->
+        <div class="project-paper crumpled" style="bottom: 15%; right: 30%; transform: translate(50%, 50%) rotate(240deg)">
+            <div class="project-content">
+                <h3 class="project-title">Project 5</h3>
+                <p class="project-description">Description of your fifth project goes here...</p>
+                <a href="#" class="project-link">Github</a>
+            </div>
+        </div>
+
+        <!-- Project 6 -->
+        <div class="project-paper crumpled" style="bottom: 15%; left: 30%; transform: translate(-50%, 50%) rotate(300deg)">
+            <div class="project-content">
+                <h3 class="project-title">Project 6</h3>
+                <p class="project-description">Description of your sixth project goes here...</p>
+                <a href="#" class="project-link">Github</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.project-paper').forEach(paper => {
+            paper.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent click from bubbling up to window
+                const wasExpanded = paper.classList.contains('expanded');
+                const container = document.querySelector('.projects-container');
+                
+                // First collapse any expanded papers
+                document.querySelectorAll('.project-paper.expanded').forEach(p => {
+                    p.classList.remove('expanded');
+                    p.classList.add('crumpled');
+                });
+                container.classList.remove('has-expanded');
+                
+                if (!wasExpanded) {
+                    paper.classList.remove('crumpled');
+                    paper.classList.add('expanded');
+                    container.classList.add('has-expanded');
+                }
+            });
+        });
+
+        // Add click event listener to window
+        window.addEventListener('click', () => {
+            const container = document.querySelector('.projects-container');
+            document.querySelectorAll('.project-paper.expanded').forEach(paper => {
+                paper.classList.remove('expanded');
+                paper.classList.add('crumpled');
+            });
+            container.classList.remove('has-expanded');
+        });
+
+        // Prevent project links from triggering collapse when clicked
+        document.querySelectorAll('.project-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+    </script>
 </body>
 </html>
