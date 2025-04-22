@@ -5,27 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #doodleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
 </head>
 <body>
-    <a href="table-of-content.html" class="back-button">Back</a>
-    <h1>THE MIND BEHIND THE MODEL</h1>
-    <div class="social-buttons">
-        <a href="https://www.linkedin.com/in/parv-singhal-iitk/" class="social-button" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-        <a href="https://github.com/IamParvSinghal" class="social-button" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="https://www.youtube.com/watch?v=6_hl8AB7Uf0" class="social-button" target="_blank" rel="noopener noreferrer">Funny video</a>
-    </div>
-    <div class="about">
-        <p><b><span style="font-size: 1.4em;">Machines are awesome. It's as simple as that.</span></b></p>
+    <canvas id="doodleCanvas"></canvas>
+    <div class="content">
+        <a href="table-of-content.html" class="back-button">Back</a>
+        <h1>THE MIND BEHIND THE MODEL</h1>
+        <div class="social-buttons">
+            <a href="https://www.linkedin.com/in/parv-singhal-iitk/" class="social-button" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://github.com/IamParvSinghal" class="social-button" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://www.youtube.com/watch?v=6_hl8AB7Uf0" class="social-button" target="_blank" rel="noopener noreferrer">Funny video</a>
+        </div>
+        <div class="about">
+            <p><b><span style="font-size: 1.4em;">Machines are awesome. It's as simple as that.</span></b></p>
             
-        <p>I have always been fascinated by them, and even though we're still early in the AI revolution, I find myself both excited and a little nervous about what machines might achieve. Every day, they get a bit closer to understanding and copying the way we think. As a 19-year-old AI enthusiast, I see machines as tools that can extend human capability, opening doors to solutions and insights that were once out of reach.</p>
+            <p>I have always been fascinated by them, and even though we're still early in the AI revolution, I find myself both excited and a little nervous about what machines might achieve. Every day, they get a bit closer to understanding and copying the way we think. As a 19-year-old AI enthusiast, I see machines as tools that can extend human capability, opening doors to solutions and insights that were once out of reach.</p>
 
-        <p>Working as an Undergraduate Machine Learning Researcher in a Reinforcement Learning group, I've witnessed firsthand how newer AI models can reveal hidden patterns in data, allowing us to make smarter decisions and solve problems previously considered too complex.</p>
+            <p>Working as an Undergraduate Machine Learning Researcher in a Reinforcement Learning group, I've witnessed firsthand how newer AI models can reveal hidden patterns in data, allowing us to make smarter decisions and solve problems previously considered too complex.</p>
 
-        <p>This belief also drives my personal projects where I explore the intersection of computer vision and natural language processing. By combining these fields, I'm not just teaching machines to see or read, but enabling them to interpret and act on information from the noisy, unpredictable real world, which is vital for applications like digital security and real-time decision-making.</p>
+            <p>This belief also drives my personal projects where I explore the intersection of computer vision and natural language processing. By combining these fields, I'm not just teaching machines to see or read, but enabling them to interpret and act on information from the noisy, unpredictable real world, which is vital for applications like digital security and real-time decision-making.</p>
 
-        <p>My earlier work in automotive data analysis showed me how thoughtful data cleaning and dimensionality reduction can transform raw sensor readings into actionable insights, such as optimizing fuel efficiency and predicting vehicle performance.</p>
+            <p>My earlier work in automotive data analysis showed me how thoughtful data cleaning and dimensionality reduction can transform raw sensor readings into actionable insights, such as optimizing fuel efficiency and predicting vehicle performance.</p>
 
-        <p>For me, the excitement lies not just in building smarter algorithms, but in expanding what technology can help us achieve, i.e., making our systems more adaptive, our decisions more informed, and our world a little more understandable.</p>
+            <p>For me, the excitement lies not just in building smarter algorithms, but in expanding what technology can help us achieve, i.e., making our systems more adaptive, our decisions more informed, and our world a little more understandable.</p>
+        </div>
     </div>
+    <script src="doodles.js"></script>
 </body>
 </html>
