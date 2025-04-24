@@ -40,7 +40,7 @@ h1 {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 5px;
-    font-size: 6em;
+    font-size: 9em;
     font-family: 'Spring Rainstorm', cursive;
 }
 
@@ -53,7 +53,7 @@ h1 {
 .centered a {
     display: block;
     margin-top: 20px;
-    font-size: 3em;
+    font-size: 5em;
     color: #333;
     text-decoration: none;
     cursor: inherit;
@@ -64,7 +64,7 @@ h1 {
     max-width: 800px;
     margin: 20px auto;
     padding: 0;
-    font-size: 2em;
+    font-size: 2.75em;
 }
 
 .toc li {
