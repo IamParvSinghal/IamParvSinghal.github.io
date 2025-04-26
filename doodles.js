@@ -137,6 +137,8 @@ class DoodleManager {
         this.doodleInstances = [];
         this.mouseX = -1000; // Start mouse far away
         this.mouseY = -1000;
+        this.mouseTrail = [];
+        this.maxTrailLength = 40
         this.init();
     }
 
@@ -153,6 +155,16 @@ class DoodleManager {
             const rect = this.canvas.getBoundingClientRect();
             this.mouseX = e.clientX - rect.left;
             this.mouseY = e.clientY - rect.top;
+            
+            // Add new point to trail with offset to bottom right
+            this.mouseTrail.push({ 
+                x: this.mouseX + 35, 
+                y: this.mouseY + 35, 
+                age: 1 
+            });
+            if (this.mouseTrail.length > this.maxTrailLength) {
+                this.mouseTrail.shift();
+            }
         });
 
         // Handle mouse leaving the window
@@ -160,6 +172,7 @@ class DoodleManager {
             if (e.relatedTarget === null) {
                 this.mouseX = -1000;
                 this.mouseY = -1000;
+                this.mouseTrail = []; // Clear the trail when mouse leaves
             }
         });
 
@@ -223,29 +236,44 @@ class DoodleManager {
 
     animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+        
+        // Draw doodles
         this.doodleInstances.forEach(doodle => {
             doodle.update(this.mouseX, this.mouseY);
             
             this.ctx.save();
-            this.ctx.strokeStyle = '#1a365d';
-            this.ctx.lineWidth = 1;
-            this.ctx.globalAlpha = doodle.opacity;
-            
-            // Apply rotation
             this.ctx.translate(doodle.x, doodle.y);
             this.ctx.rotate(doodle.rotation);
-            this.ctx.translate(-doodle.x, -doodle.y);
             
-            doodles[doodle.type](
-                this.ctx,
-                doodle.x,
-                doodle.y,
-                doodle.size
-            );
-            
+            this.ctx.strokeStyle = `rgba(0, 0, 0, ${doodle.opacity})`;
+            doodles[doodle.type](this.ctx, 0, 0, doodle.size);
             this.ctx.stroke();
+            
             this.ctx.restore();
+        });
+
+        // Draw mouse trail
+        if (this.mouseTrail.length > 1) {
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.mouseTrail[0].x, this.mouseTrail[0].y);
+            
+            for (let i = 1; i < this.mouseTrail.length; i++) {
+                const opacity = i / this.mouseTrail.length; // Lines fade out towards the end
+                // Create rainbow effect using HSL
+                const hue = (i / this.mouseTrail.length) * 360;
+                this.ctx.strokeStyle = `hsla(${hue}, 70%, 50%, ${opacity})`;
+                this.ctx.lineWidth = 2 * (i / this.mouseTrail.length); // Lines get thinner towards the end
+                
+                this.ctx.beginPath();
+                this.ctx.moveTo(this.mouseTrail[i-1].x, this.mouseTrail[i-1].y);
+                this.ctx.lineTo(this.mouseTrail[i].x, this.mouseTrail[i].y);
+                this.ctx.stroke();
+            }
+        }
+
+        // Age the points
+        this.mouseTrail.forEach(point => {
+            point.age *= 0.95;
         });
 
         requestAnimationFrame(() => this.animate());

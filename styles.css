@@ -38,10 +38,15 @@ a:hover {
 
 h1 {
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 5px;
-    font-size: 9em;
+    margin-top: 60px;
+    margin-bottom: 4.5px;
+    font-size: 8em;
     font-family: 'Spring Rainstorm', cursive;
+}
+
+/* Specific style for table of contents page title */
+.toc-page h1 {
+    margin-top: 80px;
 }
 
 .centered {
@@ -62,13 +67,13 @@ h1 {
 .toc {
     list-style-type: none;
     max-width: 800px;
-    margin: 20px auto;
+    margin: 40px auto;
     padding: 0;
     font-size: 2.75em;
 }
 
 .toc li {
-    margin: 25px 0;
+    margin: 30px 0;
     font-family: 'Spring Rainstorm', cursive;
     position: relative;
     display: flex;
@@ -102,9 +107,9 @@ h1 {
 }
 
 .about {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 5px auto;
-    padding: 0 10px;
+    padding: 0 50px;
 }
 
 .about p {
