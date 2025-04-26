@@ -1,3 +1,1 @@
-My Personal Website: https://parvsinghal.me
-
-Not completed yet.
+Enjoy My Personal Website: https://parvsinghal.me
