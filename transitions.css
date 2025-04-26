@@ -1,0 +1,66 @@
+/* Page transition animations */
+.page-transition {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #fffff4;
+    z-index: 9999;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/* Slide animations */
+.slide-left {
+    visibility: visible;
+    animation: slideLeft 0.5s ease-out forwards;
+}
+
+.slide-right {
+    visibility: visible;
+    animation: slideRight 0.5s ease-out forwards;
+}
+
+@keyframes slideLeft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideRight {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Content animations */
+.content, .centered {
+    opacity: 1;
+    transform: none;
+}
+
+/* Prevent any movement during transition */
+body.transitioning {
+    overflow: hidden;
+}
+
+body.transitioning .content,
+body.transitioning .centered {
+    animation: fadeOut 0.2s ease-out forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+} 
