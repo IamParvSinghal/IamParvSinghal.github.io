@@ -18,8 +18,8 @@
         }
         .projects-container {
             position: relative;
-            width: 600px; /* Adjusted width to fit square arrangement */
-            height: 600px; /* Set a square height */
+            width: 600px;
+            height: 600px; 
             margin: 30px auto;
         }
 
@@ -62,7 +62,7 @@
             overflow: hidden;
             position: relative;
             z-index: 1;
-            width: 400px; /* Adjusted content width */
+            width: 400px;
             padding: 20px;
             margin: 0 auto;
         }
@@ -177,11 +177,10 @@
     <script>
         document.querySelectorAll('.project-paper').forEach(paper => {
             paper.addEventListener('click', (e) => {
-                e.stopPropagation(); // Prevent click from bubbling up to window
+                e.stopPropagation();
                 const wasExpanded = paper.classList.contains('expanded');
                 const container = document.querySelector('.projects-container');
 
-                // First collapse any expanded papers
                 document.querySelectorAll('.project-paper.expanded').forEach(p => {
                     p.classList.remove('expanded');
                     p.classList.add('crumpled');
@@ -196,7 +195,6 @@
             });
         });
 
-        // Add click event listener to window
         window.addEventListener('click', () => {
             const container = document.querySelector('.projects-container');
             document.querySelectorAll('.project-paper.expanded').forEach(paper => {
@@ -206,7 +204,6 @@
             container.classList.remove('has-expanded');
         });
 
-        // Prevent project links from triggering collapse when clicked
         document.querySelectorAll('.project-link').forEach(link => {
             link.addEventListener('click', (e) => {
                 e.stopPropagation();

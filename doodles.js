@@ -5,8 +5,8 @@ class Doodle {
         this.originalX = x;
         this.originalY = y;
         this.type = type;
-        this.size = 8; // Fixed size for all doodles
-        this.opacity = 0.4; // Increased opacity
+        this.size = 8; 
+        this.opacity = 0.4;
         this.velocityX = 0;
         this.velocityY = 0;
         this.rotation = 0;
@@ -14,29 +14,23 @@ class Doodle {
     }
 
     update(mouseX, mouseY) {
-        // Distance from mouse
         const dx = mouseX - this.x;
         const dy = mouseY - this.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
         
-        // Mouse influence radius and force increased
         const radius = 150;
         
         if (distance < radius) {
-            // Much stronger push force away from mouse
             const force = (1 - distance / radius) * 2.0;
             const angle = Math.atan2(dy, dx);
             
-            // Add some randomness to the movement
             const randomAngle = angle + (Math.random() - 0.5) * Math.PI * 0.5;
             this.velocityX -= Math.cos(randomAngle) * force * 2;
             this.velocityY -= Math.sin(randomAngle) * force * 2;
             
-            // Add rotation effect
             this.rotationVelocity += (Math.random() - 0.5) * 0.2;
         }
 
-        // Return to original position with elastic effect
         const returnForce = 0.08;
         const displacement = {
             x: this.originalX - this.x,
@@ -44,29 +38,24 @@ class Doodle {
         };
         const displacementDistance = Math.sqrt(displacement.x * displacement.x + displacement.y * displacement.y);
         
-        // Stronger return force when further from original position
         const elasticForce = returnForce * (1 + displacementDistance / 50);
         this.velocityX += displacement.x * elasticForce;
         this.velocityY += displacement.y * elasticForce;
 
-        // Apply friction
         this.velocityX *= 0.9;
         this.velocityY *= 0.9;
         this.rotationVelocity *= 0.95;
 
-        // Update position and rotation
         this.x += this.velocityX;
         this.y += this.velocityY;
         this.rotation += this.rotationVelocity;
 
-        // Add slight wobble effect when moving
         const speed = Math.sqrt(this.velocityX * this.velocityX + this.velocityY * this.velocityY);
         this.opacity = 0.4 + speed * 0.4;
     }
 }
 
 const doodles = [
-    // Star
     (ctx, x, y, size) => {
         ctx.beginPath();
         for (let i = 0; i < 5; i++) {
@@ -77,7 +66,6 @@ const doodles = [
         }
         ctx.closePath();
     },
-    // Spiral
     (ctx, x, y, size) => {
         ctx.beginPath();
         for (let i = 0; i < 20; i++) {
@@ -88,7 +76,6 @@ const doodles = [
             i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py);
         }
     },
-    // Heart
     (ctx, x, y, size) => {
         ctx.beginPath();
         ctx.moveTo(x, y + size * 0.3);
@@ -97,14 +84,12 @@ const doodles = [
         ctx.bezierCurveTo(x, y + size, x + size, y + size * 0.6, x + size, y + size * 0.3);
         ctx.bezierCurveTo(x + size, y, x, y, x, y + size * 0.3);
     },
-    // Cloud
     (ctx, x, y, size) => {
         ctx.beginPath();
         ctx.arc(x, y, size * 0.5, 0, Math.PI * 2);
         ctx.arc(x + size * 0.4, y - size * 0.2, size * 0.3, 0, Math.PI * 2);
         ctx.arc(x - size * 0.4, y - size * 0.1, size * 0.4, 0, Math.PI * 2);
     },
-    // Music Note
     (ctx, x, y, size) => {
         ctx.beginPath();
         ctx.arc(x - size * 0.5, y + size * 0.5, size * 0.3, 0, Math.PI * 2);
@@ -112,7 +97,6 @@ const doodles = [
         ctx.lineTo(x - size * 0.5, y + size * 0.5);
         ctx.lineTo(x + size * 0.5, y + size * 0.3);
     },
-    // Flower
     (ctx, x, y, size) => {
         for (let i = 0; i < 6; i++) {
             const angle = (i * Math.PI) / 3;
@@ -135,7 +119,7 @@ class DoodleManager {
         this.canvas = document.getElementById('doodleCanvas');
         this.ctx = this.canvas.getContext('2d');
         this.doodleInstances = [];
-        this.mouseX = -1000; // Start mouse far away
+        this.mouseX = -1000;
         this.mouseY = -1000;
         this.mouseTrail = [];
         this.maxTrailLength = 40
@@ -149,14 +133,11 @@ class DoodleManager {
             this.redistributeDoodles();
         });
 
-        // Track mouse movement across the entire window
         window.addEventListener('mousemove', (e) => {
-            // Get mouse position relative to the page
             const rect = this.canvas.getBoundingClientRect();
             this.mouseX = e.clientX - rect.left;
             this.mouseY = e.clientY - rect.top;
             
-            // Add new point to trail with offset to bottom right
             this.mouseTrail.push({ 
                 x: this.mouseX + 35, 
                 y: this.mouseY + 35, 
@@ -167,12 +148,11 @@ class DoodleManager {
             }
         });
 
-        // Handle mouse leaving the window
         window.addEventListener('mouseout', (e) => {
             if (e.relatedTarget === null) {
                 this.mouseX = -1000;
                 this.mouseY = -1000;
-                this.mouseTrail = []; // Clear the trail when mouse leaves
+                this.mouseTrail = [];
             }
         });
 
@@ -190,11 +170,9 @@ class DoodleManager {
         
         for (let row = 0; row < numRows; row++) {
             for (let col = 0; col < numCols; col++) {
-                // Increased randomness within each cell (0.2-0.8 instead of 0.3-0.7)
                 const x = (col + 0.2 + Math.random() * 0.6) * cellWidth;
                 const y = (row + 0.2 + Math.random() * 0.6) * cellHeight;
                 
-                // Skip some cells randomly (20% chance)
                 if (Math.random() > 0.2) {
                     this.doodleInstances.push(new Doodle(
                         x,
@@ -206,7 +184,6 @@ class DoodleManager {
             }
         }
 
-        // Add some completely random doodles (10% extra)
         const extraDoodles = Math.floor((numRows * numCols) * 0.1);
         for (let i = 0; i < extraDoodles; i++) {
             this.doodleInstances.push(new Doodle(
@@ -222,7 +199,6 @@ class DoodleManager {
         const oldDoodles = this.doodleInstances;
         this.createDoodles();
         
-        // Preserve velocities from old doodles
         for (let i = 0; i < Math.min(oldDoodles.length, this.doodleInstances.length); i++) {
             this.doodleInstances[i].velocityX = oldDoodles[i].velocityX;
             this.doodleInstances[i].velocityY = oldDoodles[i].velocityY;
@@ -236,8 +212,7 @@ class DoodleManager {
 
     animate() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        
-        // Draw doodles
+
         this.doodleInstances.forEach(doodle => {
             doodle.update(this.mouseX, this.mouseY);
             
@@ -252,17 +227,15 @@ class DoodleManager {
             this.ctx.restore();
         });
 
-        // Draw mouse trail
         if (this.mouseTrail.length > 1) {
             this.ctx.beginPath();
             this.ctx.moveTo(this.mouseTrail[0].x, this.mouseTrail[0].y);
             
             for (let i = 1; i < this.mouseTrail.length; i++) {
-                const opacity = i / this.mouseTrail.length; // Lines fade out towards the end
-                // Create rainbow effect using HSL
+                const opacity = i / this.mouseTrail.length;
                 const hue = (i / this.mouseTrail.length) * 360;
                 this.ctx.strokeStyle = `hsla(${hue}, 70%, 50%, ${opacity})`;
-                this.ctx.lineWidth = 2 * (i / this.mouseTrail.length); // Lines get thinner towards the end
+                this.ctx.lineWidth = 2 * (i / this.mouseTrail.length);
                 
                 this.ctx.beginPath();
                 this.ctx.moveTo(this.mouseTrail[i-1].x, this.mouseTrail[i-1].y);
@@ -271,7 +244,6 @@ class DoodleManager {
             }
         }
 
-        // Age the points
         this.mouseTrail.forEach(point => {
             point.age *= 0.95;
         });
@@ -280,7 +252,6 @@ class DoodleManager {
     }
 }
 
-// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new DoodleManager();
 }); 

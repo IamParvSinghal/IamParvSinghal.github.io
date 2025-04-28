@@ -1,4 +1,3 @@
-/* Page transition animations */
 .page-transition {
     position: fixed;
     width: 100%;
@@ -11,7 +10,6 @@
     visibility: hidden;
 }
 
-/* Slide animations */
 .slide-left {
     visibility: visible;
     animation: slideLeft 0.5s ease-out forwards;
@@ -40,13 +38,11 @@
     }
 }
 
-/* Content animations */
 .content, .centered {
     opacity: 1;
     transform: none;
 }
 
-/* Prevent any movement during transition */
 body.transitioning {
     overflow: hidden;
 }
@@ -63,4 +59,4 @@ body.transitioning .centered {
     100% {
         opacity: 0;
     }
-} 
+}
