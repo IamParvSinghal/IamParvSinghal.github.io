@@ -27,7 +27,6 @@ body {
     overflow: hidden;
 }
 
-/* Make all links use the pencil cursor and add hover effect */
 a {
     cursor: inherit;
 }
@@ -45,7 +44,6 @@ h1 {
     font-family: 'Spring Rainstorm', cursive;
 }
 
-/* Specific style for table of contents page title */
 .toc-page h1 {
     text-align: center;
     margin-top: 80px;
@@ -74,7 +72,6 @@ h1 {
     z-index: 2;
 }
 
-/* Specific style for table of contents page */
 .toc-page .content {
     justify-content: flex-start;
     padding-top: 20px;
