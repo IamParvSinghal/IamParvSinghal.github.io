@@ -23,7 +23,8 @@ body {
         #e0d7ca 30px
     );
     cursor: inherit;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
 }
 
 /* Make all links use the pencil cursor and add hover effect */
@@ -46,7 +47,11 @@ h1 {
 
 /* Specific style for table of contents page title */
 .toc-page h1 {
+    text-align: center;
     margin-top: 80px;
+    margin-bottom: 40px;
+    font-size: 8em;
+    font-family: 'Spring Rainstorm', cursive;
 }
 
 .centered {
@@ -62,6 +67,17 @@ h1 {
     color: #333;
     text-decoration: none;
     cursor: inherit;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Specific style for table of contents page */
+.toc-page .content {
+    justify-content: flex-start;
+    padding-top: 20px;
 }
 
 .toc {
