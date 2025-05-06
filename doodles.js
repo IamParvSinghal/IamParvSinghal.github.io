@@ -220,7 +220,10 @@ class DoodleManager {
             this.ctx.translate(doodle.x, doodle.y);
             this.ctx.rotate(doodle.rotation);
             
-            this.ctx.strokeStyle = `rgba(0, 0, 0, ${doodle.opacity})`;
+            // Get the computed style to access CSS variables
+            const computedStyle = getComputedStyle(document.body);
+            const doodleColor = computedStyle.getPropertyValue('--doodle-color').trim();
+            this.ctx.strokeStyle = `rgba(${hexToRgb(doodleColor)}, ${doodle.opacity})`;
             doodles[doodle.type](this.ctx, 0, 0, doodle.size);
             this.ctx.stroke();
             
@@ -250,6 +253,18 @@ class DoodleManager {
 
         requestAnimationFrame(() => this.animate());
     }
+}
+
+function hexToRgb(hex) {
+    // Remove the # if present
+    hex = hex.replace('#', '');
+    
+    // Parse the hex values
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    
+    return `${r}, ${g}, ${b}`;
 }
 
 document.addEventListener('DOMContentLoaded', () => {

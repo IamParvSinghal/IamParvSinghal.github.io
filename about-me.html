@@ -21,6 +21,14 @@
             z-index: 2;
         }
     </style>
+    <script>
+      (function() {
+        var theme = localStorage.getItem('theme');
+        if (theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
 </head>
 <body>
     <canvas id="doodleCanvas"></canvas>
@@ -46,5 +54,6 @@
     </div>
     <script src="doodles.js"></script>
     <script src="transitions.js"></script>
+    <script src="theme.js"></script>
 </body>
 </html>

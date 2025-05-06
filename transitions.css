@@ -4,7 +4,7 @@
     height: 100vh;
     top: 0;
     left: 0;
-    background: #fffff4;
+    background: var(--bg-color);
     z-index: 9999;
     pointer-events: none;
     visibility: hidden;

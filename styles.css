@@ -5,26 +5,44 @@
     font-style: normal;
 }
 
+:root {
+    --bg-color: #fffff4;
+    --text-color: #333;
+    --doodle-color: #8c8c8c;
+    --border-color: #333;
+    --line-color: #e0d7ca99;
+}
+
+[data-theme="dark"] {
+    --bg-color: #2c3e50;
+    --text-color: #c6f1fa;
+    --doodle-color: #fddf8e;
+    --border-color: #c6f1fa;
+    --line-color: #c6f1fa55;
+}
+
 html {
     cursor: url('pencil_cursor.png'), auto;
     height: 100%;
 }
 
 body {
-    background-color: #fffff4;
+    background-color: var(--bg-color);
     font-family: 'Spring Rainstorm', cursive;
     margin: 0;
     padding: 0;
     line-height: 1.6;
     background-image: repeating-linear-gradient(
         to bottom,
-        #fffff4,
-        #fffff4 29px,
-        #e0d7ca 30px
+        var(--bg-color),
+        var(--bg-color) 29px,
+        var(--line-color) 30px
     );
     cursor: inherit;
     height: 100vh;
     overflow: hidden;
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 a {
@@ -62,7 +80,7 @@ h1 {
     display: block;
     margin-top: 20px;
     font-size: 5em;
-    color: #333;
+    color: var(--text-color);
     text-decoration: none;
     cursor: inherit;
 }
@@ -96,16 +114,21 @@ h1 {
 
 .toc li a {
     text-decoration: none;
-    color: #333;
-    background-color: #fffff4;
-    padding-right: 15px;
-    z-index: 1;
+    color: var(--text-color);
+    background: var(--bg-color);
+    padding: 0 10px;
+    z-index: 2;
+    position: relative;
+    display: inline-block;
 }
 
 .toc li span {
-    background-color: #fffff4;
-    padding-left: 15px;
-    z-index: 1;
+    color: var(--text-color);
+    background: var(--bg-color);
+    padding: 0 10px;
+    z-index: 2;
+    position: relative;
+    display: inline-block;
 }
 
 .toc li::after {
@@ -115,8 +138,9 @@ h1 {
     right: 0;
     text-align: center;
     z-index: 0;
-    color: #333;
+    color: var(--text-color);
     letter-spacing: 8px;
+    pointer-events: none;
 }
 
 .about {
@@ -174,23 +198,43 @@ h1 {
     font-size: 1em;
 }
 
+.theme-toggle {
+    position: fixed;
+    top: 30px;
+    right: 30px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
 .back-button {
     position: fixed;
     top: 30px;
     left: 30px;
     text-decoration: none;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.5em;
-    background-color: #fffff4;
+    background-color: var(--bg-color);
     padding: 10px 20px;
-    border: 2px solid #333;
+    border: 2px solid var(--border-color);
     border-radius: 10px;
     transition: all 0.3s ease;
 }
 
 .back-button:hover {
-    background-color: #333;
-    color: #fffff4;
+    background-color: var(--text-color);
+    color: var(--bg-color);
 }
 
 @keyframes fadeIn {
@@ -229,14 +273,37 @@ a:hover {
     padding: 10px 30px;
     font-size: 1.2em;
     text-decoration: none;
-    color: #333;
-    border: 2px solid #333;
+    color: var(--text-color);
+    border: 2px solid var(--border-color);
     border-radius: 8px;
     transition: all 0.3s ease;
-    background-color: #fffff4;
+    background-color: var(--bg-color);
 }
 
 .social-button:hover {
-    background-color: #333;
-    color: #fffff4;
+    background-color: var(--text-color);
+    color: var(--bg-color);
+}
+
+[data-theme="dark"] .project-paper.crumpled::before {
+    filter: invert(1) sepia(1) saturate(8) hue-rotate(170deg) brightness(1.1) !important;
+}
+
+[data-theme="dark"] .project-paper.expanded .project-content {
+    background: var(--doodle-color);
+    color: var(--bg-color);
+}
+
+[data-theme="dark"] .project-title {
+    background: transparent;
+}
+
+[data-theme="dark"] .project-link {
+    background: var(--bg-color);
+    color: var(--doodle-color);
+}
+
+[data-theme="dark"] .project-link:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
 }
